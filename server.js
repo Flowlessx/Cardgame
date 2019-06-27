@@ -5,8 +5,9 @@ const PORT =process.env.PORT || 8080;
 let router = express.Router();
 
 router.get('/',function(req,res){
- res.sendFile(`${process.env.PWD}/daw/index.html`);
+   res.sendFile('index.html', { root: __dirname });
 });
+
 app.use(express.static(__dirname + '/daw'));
 
 app.use('/',router);
