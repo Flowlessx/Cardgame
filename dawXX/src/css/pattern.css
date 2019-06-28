@@ -1,0 +1,80 @@
+.pattern {
+	display: flex;
+	overflow: hidden;
+	flex-direction: column;
+	box-sizing: border-box;
+	position: relative;
+	height: var( --pattern-height );
+	color: var( --pattern-text );
+	margin-top: calc( var( --pattern-height ) * -1 );
+	border-radius: 4px 0 0 4px;
+	background-color: var( --pattern-bg );
+	transition:
+		margin-top .3s,
+		margin-bottom .3s,
+		background-color .1s;
+}
+.synth-show .pattern {
+	margin: 4px 0;
+}
+.pattern.selected {
+	--pattern-bg: var( --pattern-selected-bg );
+	--pattern-text: var( --pattern-selected-text );
+	--pattern-head-bg: var( --pattern-head-selected-bg );
+}
+
+/* .......................................................................... */
+.pattern-head {
+	box-sizing: border-box;
+	display: flex;
+	height: 22px;
+	line-height: 22px;
+	transition: inherit;
+	background-color: var( --pattern-head-bg );
+}
+.pattern-name {
+	padding: 0 8px;
+	font-size: 12px;
+	font-weight: bold;
+	margin-right: auto;
+}
+.pattern-name:empty::after {
+	content: "Untitled";
+	font-style: italic;
+	opacity: .5;
+}
+
+/* .......................................................................... */
+.pattern-content {
+	flex: 1;
+	position: relative;
+}
+.pattern-content svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	fill: currentColor;
+	opacity: .8;
+}
+
+/* .......................................................................... */
+.pattern-btn {
+	width: 20px;
+	border: 0;
+	padding: 0;
+	opacity: .8;
+	color: inherit;
+	cursor: pointer;
+	font-size: 14px;
+	font-family: "FontAwesome";
+	background: none;
+	transition: .1s opacity;
+}
+.pattern-btn:hover {
+	opacity: 1;
+	font-weight: bold;
+}
+.pattern-btn[ data-action="clone" ]::before { content: "\f24d"; }
+.pattern-btn[ data-action="remove" ]::before { content: "\f00d"; }

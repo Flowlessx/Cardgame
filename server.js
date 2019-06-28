@@ -3,7 +3,7 @@ const app = express();
 const PORT =process.env.PORT || 8080;
 const path = require('path');
 
-app.use(express.static('./daw'));
+app.use(express.static('./dawXX'));
 
 app.use(express.json());
 const courses = [
@@ -13,7 +13,7 @@ const courses = [
 ];
 
 app.get('*', function (request, response){
-    response.sendFile(path.resolve( 'daw', 'index.html'));
+    response.sendFile(path.resolve( 'dawXX', 'index.html'));
 });
 //when we route to /courses
 app.get("/courses", function(req, res) {
