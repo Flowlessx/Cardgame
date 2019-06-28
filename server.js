@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT =process.env.PORT || 8080;
 
-app.use(express.static('./daw'));
+app.use(express.static('./public'));
 
 app.use(express.json());
 const courses = [
