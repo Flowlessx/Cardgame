@@ -13,7 +13,7 @@ const courses = [
 ];
 
 app.get('*', function (request, response){
-    response.sendFile(path.resolve(__dirname, './public', 'index.html'));
+    response.sendFile(path.resolve( 'public', 'index.html'));
 });
 //when we route to /courses
 app.get("/courses", function(req, res) {
