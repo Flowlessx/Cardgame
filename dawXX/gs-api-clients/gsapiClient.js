@@ -140,7 +140,6 @@ const gsapiClient = {
 /*
 1. Why res.text() instead of res.json() ?
    To handle the case where PHP returns a text error/exception with a default 200 code.
-
 2. Every not-ok queries will throw the result instead of return it, why?
    To handle nicely the errors in the UI side, like:
    query().finally().then( OK, KO )
