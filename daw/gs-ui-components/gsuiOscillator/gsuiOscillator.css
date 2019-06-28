@@ -1,0 +1,147 @@
+:root {
+	--gsuiOscillator-bg: #2af;
+	--gsuiOscillator-font: 12px sans-serif;
+	--gsuiOscillator-color: #ff0;
+	--gsuiOscillator-slider-bg: #f64;
+	--gsuiOscillator-number-font: 12px monospace;
+	--gsuiOscillator-pan: #808;
+	--gsuiOscillator-gain: #0f0;
+	--gsuiOscillator-pan-a: #2af;
+	--gsuiOscillator-pan-b: #f64;
+	--gsuiOscillator-detune: #fa0;
+}
+
+.gsuiOscillator {
+	display: flex;
+	overflow: hidden;
+	position: relative;
+	box-sizing: border-box;
+	justify-content: space-between;
+	height: 60px;
+	padding: 6px;
+	padding-right: 8px;
+	font: var( --gsuiOscillator-font );
+	color: var( --gsuiOscillator-color );
+	background-color: var( --gsuiOscillator-bg );
+	--gsuiSlider-lineBgColor: var( --gsuiOscillator-slider-bg );
+}
+.gsuiOscillator-order {
+	display: flex;
+	align-items: center;
+}
+.gsuiOscillator-order::before {
+	counter-increment: count-osc;
+	content: counter( count-osc );
+	font-size: 11px;
+	font-weight: bold;
+	opacity: .2;
+}
+.gsuiOscillator-attr {
+	position: relative;
+	width: 40px;
+	margin-left: 14px;
+}
+.gsuiOscillator-sliderWrap {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	height: 40px;
+	margin-top: -20px;
+}
+.gsuiOscillator-sliderWrap .gsuiSlider {
+	margin: auto;
+}
+
+.gsuiOscillator-pan { --gsuiSlider-lineColor: var( --gsuiOscillator-pan ); }
+.gsuiOscillator-gain { --gsuiSlider-lineColor: var( --gsuiOscillator-gain ); }
+.gsuiOscillator-detune { --gsuiSlider-lineColor: var( --gsuiOscillator-detune ); }
+
+.gsuiOscillator-sliderValue {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	font: var( --gsuiOscillator-number-font );
+	color: var( --gsuiSlider-lineColor );
+}
+
+.gsuiOscillator-type {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+.gsuiOscillator-typeWaves {
+	position: relative;
+	flex: 1;
+	border-radius: 2px;
+	background-color: rgba( 0, 0, 0, .4 );
+}
+.gsuiOscillator-type .gsuiPeriodicWave {
+	position: absolute;
+}
+.gsuiOscillator-type .gsuiPeriodicWave:first-child polyline { stroke: var( --gsuiOscillator-pan-a ); }
+.gsuiOscillator-type .gsuiPeriodicWave:last-child polyline { stroke: var( --gsuiOscillator-pan-b ); }
+.gsuiOscillator-type polyline {
+	stroke-opacity: .8;
+}
+
+.gsuiOscillator-typeCtrl {
+	height: 16px;
+	display: flex;
+	align-items: center;
+}
+.gsuiOscillator-remove,
+.gsuiOscillator-typeLink,
+.gsuiOscillator-type select {
+	border: 0;
+	padding: 0;
+	color: inherit;
+	cursor: pointer;
+	background: none;
+}
+.gsuiOscillator-typeLink,
+.gsuiOscillator-remove {
+	opacity: .3;
+	transition: .1s opacity;
+	font-family: "FontAwesome";
+}
+.gsuiOscillator-typeLink:focus,
+.gsuiOscillator-typeLink:hover,
+.gsuiOscillator-remove:focus,
+.gsuiOscillator-remove:hover {
+	font-weight: bold;
+	opacity: .8;
+}
+.gsuiOscillator-typeLink {
+	width: 14px;
+	font-size: 16px;
+	text-align: center;
+}
+.gsuiOscillator-type select {
+	width: 100%;
+	height: 100%;
+	margin-left: 2px;
+	font-size: 12px;
+	font-family: inherit;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+.gsuiOscillator-type option {
+	background-color: #444;
+}
+option.gsuiOscillator-nativeWave {
+	background-color: #333;
+}
+.gsuiOscillator-remove {
+	position: absolute;
+	top: 0;
+	right: 2px;
+	font-size: 12px;
+}
+.gsuiOscillator-remove::before { content: "\f00d"; }
+.gsuiOscillator-typePrev::before { content: "\f0d9"; }
+.gsuiOscillator-typeNext::before { content: "\f0da"; }

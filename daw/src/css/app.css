@@ -1,0 +1,16 @@
+#app {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+}
+
+#body {
+	flex: 1;
+	background-color: var( --app-bg );
+	--gsuiWindows-overflow: auto;
+}
