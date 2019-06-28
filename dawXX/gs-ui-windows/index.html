@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta charset="utf-8"/>
+<link rel="stylesheet" href="../assets/fonts/fonts.css"/>
+<link rel="stylesheet" href="src/gsuiWindows.css"/>
+<link rel="stylesheet" href="src/gsuiWindow.css"/>
+<link rel="stylesheet" href="index.css"/>
+</head>
+<body>
+
+<label id="lowGraphics">
+	<input type="checkbox" id="lowGraphicsCheckbox"/>
+	<span>low graphics</span>
+</label>
+
+<div class="gsuiWindow" tabindex="0" id="gsuiWindow-template">
+	<div class="gsuiWindow-handlers">
+		<div class="gsuiWindow-handler" data-dir="n"></div>
+		<div class="gsuiWindow-handler" data-dir="e"></div>
+		<div class="gsuiWindow-handler" data-dir="s"></div>
+		<div class="gsuiWindow-handler" data-dir="w"></div>
+		<div class="gsuiWindow-handler" data-dir="nw"></div>
+		<div class="gsuiWindow-handler" data-dir="ne"></div>
+		<div class="gsuiWindow-handler" data-dir="sw"></div>
+		<div class="gsuiWindow-handler" data-dir="se"></div>
+	</div>
+	<div class="gsuiWindow-wrap">
+		<div class="gsuiWindow-head">
+			<button class="gsuiWindow-icon" tabindex="-1"></button>
+			<div class="gsuiWindow-title"></div>
+			<div class="gsuiWindow-headContent"></div>
+			<div class="gsuiWindow-headBtns">
+				<button class="gsuiWindow-headBtn" data-action="minimize" title="Minimize"></button>
+				<button class="gsuiWindow-headBtn" data-action="restore" title="Restore"></button>
+				<button class="gsuiWindow-headBtn" data-action="maximize" title="Maximize"></button>
+				<button class="gsuiWindow-headBtn" data-action="close" title="Close"></button>
+			</div>
+		</div>
+		<div class="gsuiWindow-content"></div>
+	</div>
+</div>
+
+<div class="component" id="component-template">
+	<div></div>
+	<div></div>
+	<div></div>
+	<span></span>
+	<span></span>
+	<span></span>
+	<span></span>
+</div>
+
+<script>function lg( a ) { return console.log.apply( console, arguments ), a; }</script>
+<script src="src/gsuiWindows.js"></script>
+<script src="src/gsuiWindow.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

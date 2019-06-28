@@ -1,0 +1,130 @@
+:root {
+	--gsuiTimeline-bg: #448;
+	--gsuiTimeline-number-font: 14px monospace;
+	--gsuiTimeline-color: #ff0;
+	--gsuiTimeline-loop-bg: #f64;
+	--gsuiTimeline-cursor-fill: #ff0;
+	--gsuiTimeline-loopBorder-bg: #ff0;
+}
+
+.gsuiTimeline {
+	position: relative;
+	overflow: hidden;
+	cursor: default;
+	color: var( --gsuiTimeline-color );
+	font: var( --gsuiTimeline-number-font );
+	background-color: var( --gsuiTimeline-bg );
+}
+
+/* .......................................................................... */
+.gsuiTimeline-loopLine,
+.gsuiTimeline-currentTime {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 50%;
+	transition: .2s background-color;
+}
+.gsuiTimeline-loopLine:hover,
+.gsuiTimeline-currentTime:hover {
+	background-color: rgba( 255, 255, 255, .05 );
+}
+.gsuiTimeline-currentTime {
+	bottom: 0;
+}
+
+/* .......................................................................... */
+.gsuiTimeline-loop {
+	position: absolute;
+	z-index: 1;
+	height: 40%;
+	top: 0;
+}
+.gsuiTimeline-loopBg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: var( --gsuiTimeline-loop-bg );
+	transition: filter .2s;
+}
+.gsuiTimeline-loopBg:hover,
+.gsuiTimeline-loopBg.gsui-hover {
+	filter: brightness( 1.2 );
+}
+.gsuiTimeline-loopExt {
+	position: absolute;
+	z-index: 2;
+	width: 25%;
+	min-width: 5px;
+	max-width: 10px;
+	height: 250%;
+}
+.gsuiTimeline-loopA { left: -5px; }
+.gsuiTimeline-loopB { right: -5px; }
+
+.gsuiTimeline-loopBrd {
+	position: absolute;
+	z-index: 0;
+	width: 2px;
+	height: 100%;
+	background-color: var( --gsuiTimeline-loop-bg );
+	transition: .2s;
+	transition-property: height, background-color, z-index;
+}
+.gsuiTimeline-loopBrdA { left: -1px; }
+.gsuiTimeline-loopBrdB { right: -1px; }
+.gsuiTimeline-loopA:hover ~ .gsuiTimeline-loopBrdA,
+.gsuiTimeline-loopB:hover ~ .gsuiTimeline-loopBrdB,
+.gsuiTimeline-loopBrd.gsui-hover {
+	z-index: 1;
+	height: 150%;
+	background-color: var( --gsuiTimeline-loopBorder-bg );
+}
+
+.gsuiTimeline-cursorPreview,
+.gsuiTimeline-cursor {
+	position: absolute;
+	margin-left: -8px;
+	bottom: 1px;
+	transition: left;
+	fill: var( --gsuiTimeline-cursor-fill );
+	stroke: var( --gsuiTimeline-cursor-fill );
+	stroke-width: 2px;
+	stroke-linejoin: round;
+}
+.gsuiTimeline-cursorPreview {
+	opacity: .4;
+	transition: .2s opacity;
+}
+.gsuiTimeline-cursorPreview.gsui-hidden {
+	opacity: 0;
+}
+
+.gsuiTimeline-measure,
+.gsuiTimeline-beat,
+.gsuiTimeline-step {
+	position: absolute;
+	display: flex;
+	top: 0;
+	bottom: 0;
+	width: 4em;
+	margin-left: -2em;
+	align-items: center;
+	justify-content: center;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+.gsuiTimeline-step {
+	opacity: .2;
+}
+.gsuiTimeline-beat,
+.gsuiTimeline.gsui-measure .gsuiTimeline-measure {
+	opacity: .5;
+}
+.gsuiTimeline.gsui-beat .gsuiTimeline-step,
+.gsuiTimeline.gsui-measure .gsuiTimeline-beat,
+.gsuiTimeline.gsui-measure .gsuiTimeline-step {
+	opacity: 0;
+}

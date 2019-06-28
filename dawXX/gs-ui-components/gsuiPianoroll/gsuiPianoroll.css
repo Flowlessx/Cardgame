@@ -1,0 +1,39 @@
+.gsuiPianoroll {
+	width: 100%;
+	height: 500px;
+	--gsuiDragline-dotSize: 10px;
+	--gsuiDragline-dotRad: 2px;
+	--gsuiDragline-lineSize: 3px;
+}
+.gsuiPianoroll:focus {
+	outline: 1px solid var( --gsuiBlocksManager-blockColor );
+}
+
+/* .......................................................................... */
+.gsuiPianoroll-sidePanelTop,
+.gsuiPianoroll-gridPanelTop {
+	height: 100%;
+}
+.gsuiPianoroll-sidePanelBottom,
+.gsuiPianoroll-gridPanelBottom {
+	min-height: 100px;
+	background-color: var( --gsuiBlocksManager-side-bgColor );
+}
+.gsuiPianoroll-gridPanelTop {
+	display: flex;
+	flex-direction: column;
+}
+
+/* .......................................................................... */
+.gsuiPianoroll-sidePanelBottom {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.gsuiPianoroll-slidersSelect {
+	margin: auto;
+	color: inherit;
+	font: inherit;
+	border: 0;
+	background-color: var( --gsuiBlocksManager-side-bgColor );
+}

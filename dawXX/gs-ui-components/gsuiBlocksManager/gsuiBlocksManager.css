@@ -1,0 +1,195 @@
+:root {
+	--gsuiBlocksManager-font: 12px sans-serif;
+	--gsuiBlocksManager-number-font: 12px monospace;
+	--gsuiBlocksManager-grid-bg: #2af;
+	--gsuiBlocksManager-side-bgColor: #c55;
+	--gsuiBlocksManager-timeline-height: 32px;
+	--gsuiBlocksManager-selection-bgColor: rgba( 255, 255, 0, .5 );
+	--gsuiBlocksManager-selection-borderColor: #ff0;
+	--gsuiBlocksManager-blockColor: #ff0;
+	--gsuiBlocksManager-blockSelectedColor: #00f;
+}
+
+.gsuiBlocksManager-sidePanel {
+	position: relative;
+	min-width: 68px;
+	max-width: 104px;
+	width: 104px;
+	font: var( --gsuiBlocksManager-font );
+	background-color: var( --gsuiBlocksManager-side-bgColor );
+}
+.gsuiBlocksManager-sidePanel .gsui-opacityHover {
+	color: #fff;
+	cursor: pointer;
+	opacity: .4;
+	transition: .2s opacity;
+}
+.gsuiBlocksManager-sidePanel .gsui-opacityHover:focus,
+.gsuiBlocksManager-sidePanel .gsui-opacityHover:hover {
+	opacity: .8;
+}
+.gsuiBlocksManager-gridPanel {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	border-left-width: 1px !important;
+}
+.gsuiBlocksManager-sidePanelMenu {
+	display: flex;
+	box-sizing: border-box;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 4px;
+	height: var( --gsuiBlocksManager-timeline-height );
+}
+
+/* .......................................................................... */
+.gsuiBlocksManager-magnet {
+	display: flex;
+	align-items: center;
+	padding: 4px;
+	border-radius: 4px;
+	font: var( --gsuiBlocksManager-number-font );
+}
+.gsuiBlocksManager-magnetValue {
+	white-space: nowrap;
+	margin-right: 6px;
+}
+.gsuiBlocksManager-magnet::after {
+	content: "\f076";
+	font-family: "FontAwesome";
+	opacity: .7;
+}
+.gsuiBlocksManager-magnet:focus::after,
+.gsuiBlocksManager-magnet:hover::after {
+	font-weight: bold;
+}
+
+/* .......................................................................... */
+.gsuiBlocksManager-rows,
+.gsuiBlocksManager-sidePanelContent {
+	position: absolute;
+	overflow: scroll;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.gsuiBlocksManager-sidePanelContent {
+	top: var( --gsuiBlocksManager-timeline-height );
+}
+.gsuiBlocksManager-gridPanel .gsuiPanels-extend {
+	margin-top: var( --gsuiBlocksManager-timeline-height );
+}
+
+.gsuiBlocksManager-timelineWrap {
+	height: var( --gsuiBlocksManager-timeline-height );
+	box-sizing: border-box;
+}
+.gsuiBlocksManager-timelineWrap .gsuiTimeline {
+	height: 100%;
+}
+
+/* .......................................................................... */
+.gsuiBlocksManager-rows {
+	background-color: var( --gsuiBlocksManager-grid-bg );
+}
+.gsuiBlocksManager-rowsWrapout {
+	flex: 1;
+	position: relative;
+}
+.gsuiBlocksManager-rowsWrapin {
+	position: absolute;
+}
+.gsuiBlocksManager-rows .gsui-row {
+	width: 1000000px;
+}
+
+/* .......................................................................... */
+.gsuiBlocksManager-selection {
+	position: absolute;
+	box-sizing: border-box;
+	top: 0;
+	z-index: 2;
+	border: 2px solid var( --gsuiBlocksManager-selection-borderColor );
+	border-radius: 4px;
+	background-color: var( --gsuiBlocksManager-selection-bgColor );
+	transition: .2s;
+	transition-property: opacity, visibility;
+}
+.gsuiBlocksManager-selection-hidden {
+	opacity: 0;
+	visibility: hidden;
+}
+
+/* .......................................................................... */
+.gsuiBlocksManager-block {
+	position: absolute;
+	z-index: 1;
+	height: 100%;
+	border-radius: 2px;
+	background-color: var( --gsuiBlocksManager-blockColor );
+	transition: .1s;
+	transition-property: opacity, background-color;
+}
+.gsuiBlocksManager-block-selected {
+	--gsuiBlocksManager-blockColor: var( --gsuiBlocksManager-blockSelectedColor );
+}
+.gsuiBlocksManager-block-hidden {
+	z-index: 0;
+	opacity: .3;
+}
+.gsuiBlocksManager-block-crop {
+	position: absolute;
+	z-index: 2;
+	width: 50%;
+	height: 100%;
+	max-width: 8px;
+	border-radius: inherit;
+	background-color: #000;
+	opacity: 0;
+	transition: .1s opacity;
+}
+.gsuiBlocksManager-block-cropA {
+	left: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.gsuiBlocksManager-block-cropB {
+	right: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.gsuiBlocksManager-block:hover .gsuiBlocksManager-block-crop,
+.gsuiBlocksManager-block.gsui-hover .gsuiBlocksManager-block-crop {
+	opacity: .12;
+}
+.gsuiBlocksManager-block .gsuiBlocksManager-block-crop:hover,
+.gsuiBlocksManager-block .gsuiBlocksManager-block-crop.gsui-hover {
+	opacity: .25;
+}
+
+/* .......................................................................... */
+.gsuiBlocksManager-loop,
+.gsuiBlocksManager-currentTime {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	bottom: 0;
+	pointer-events: none;
+}
+.gsuiBlocksManager-currentTime {
+	width: 1px;
+	background-color: #ffa;
+	box-shadow: -1px 0 2px #ffa;
+}
+.gsuiBlocksManager-loop {
+	opacity: 0;
+	background-color: #000;
+	transition: .2s opacity;
+}
+.gsuiBlocksManager-loopA { left: 0; }
+.gsuiBlocksManager-loopB { right: 0; }
+.gsuiBlocksManager-loopOn {
+	opacity: .3;
+}

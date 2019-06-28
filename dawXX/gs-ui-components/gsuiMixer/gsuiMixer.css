@@ -1,0 +1,259 @@
+:root {
+	--gsuiMixer-bg: #008;
+	--gsuiMixerChannel-bg: #800;
+	--gsuiMixerChannel-bg2: #c55;
+	--gsuiMixerChannel-color: #ff0;
+	--gsuiMixerChannel-selected-bg: #f64;
+	--gsuiMixerChannel-width: 36px;
+	--gsuiMixerChannel-pan-color: #00f;
+	--gsuiMixerChannel-gain-color: #fa0;
+	--gsuiMixerChannel-name-font: monospace;
+	--gsuiMixerChannel-connect-input-color: #f00;
+	--gsuiMixerChannel-connect-output-color: #fa0;
+	--gsuiMixerChannel-toggle-bg: #00f;
+	--gsuiMixerChannel-toggleOff-bg: #008;
+	--gsuiMixerChannel-darkBorder: #ff0;
+	--gsuiMixerChannel-lightBorder: #080;
+}
+
+.gsuiMixer {
+	height: 100%;
+	position: relative;
+	background-color: var( --gsuiMixer-bg );
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.gsuiMixer-panMain,
+.gsuiMixer-panChannels {
+	position: absolute;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	bottom: 0;
+}
+
+/* .gsuiMixer-panChannels */
+/* .......................................................................... */
+.gsuiMixer-panChannels {
+	left: calc( var( --gsuiMixerChannel-width ) + 6px );
+	right: 0;
+	display: grid;
+	overflow-x: scroll;
+	grid-auto-flow: column;
+	grid-auto-columns: min-content;
+}
+.gsuiMixer-panChannels::after {
+	order: 2147483647;
+	content: ".";
+	opacity: 0;
+	margin-left: 16px;
+}
+.gsuiMixer-panChannels .gsuiMixerChannel:nth-child( odd ) {
+	--gsuiMixerChannel-bg: var( --gsuiMixerChannel-bg2 );
+}
+
+/* .gsuiMixer-addChan */
+/* .......................................................................... */
+.gsuiMixer-addChan {
+	order: 2147483646;
+	width: 36px;
+	margin: 6px;
+	padding: 0;
+	color: #fff;
+	font-size: 18px;
+	cursor: pointer;
+	border: 2px dashed;
+	border-radius: 2px;
+	background: none;
+	opacity: .2;
+	transition: .2s opacity;
+}
+.gsuiMixer-addChan:focus,
+.gsuiMixer-addChan:hover {
+	font-weight: bold;
+	opacity: .4;
+}
+.gsuiMixer-addChan::before {
+	content: "\f067";
+	font-family: "FontAwesome";
+}
+
+/* .gsuiMixerChannel */
+/* .......................................................................... */
+.gsuiMixerChannel {
+	display: flex;
+	position: relative;
+	align-items: center;
+	flex-direction: column;
+	height: 100%;
+	color: var( --gsuiMixerChannel-color );
+	width: var( --gsuiMixerChannel-width );
+	min-width: var( --gsuiMixerChannel-width );
+	background-color: var( --gsuiMixerChannel-bg );
+	--gsuiSlider-lineBgColor: rgba( 0, 0, 0, .2 );
+}
+.gsuiMixer .gsuiMixerChannel.gsuiMixer-selected {
+	--gsuiMixerChannel-bg: var( --gsuiMixerChannel-selected-bg );
+}
+.gsuiMixerChannel-muted {
+	--gsuiMixerChannel-toggle-bg: var( --gsuiMixerChannel-toggleOff-bg );
+}
+.gsuiMixerChannel-muted .gsuiSlider {
+	--gsuiSlider-lineColor: rgba( 255, 255, 255, .3 );
+}
+
+/* .......................................................................... */
+.gsuiMixerChannel-delete {
+	display: flex;
+	position: absolute;
+	align-items: center;
+	justify-content: center;
+	top: 2px;
+	right: 2px;
+	border: 0;
+	opacity: 0;
+	padding: 0;
+	color: inherit;
+	cursor: pointer;
+	font-size: 12px;
+	font-family: "FontAwesome";
+	line-height: 1em;
+	background: none;
+	transition: opacity .2s;
+}
+.gsuiMixer-panMain .gsuiMixerChannel-delete {
+	display: none;
+}
+.gsuiMixerChannel:hover .gsuiMixerChannel-delete {
+	opacity: .3;
+}
+.gsuiMixerChannel .gsuiMixerChannel-delete:focus,
+.gsuiMixerChannel .gsuiMixerChannel-delete:hover {
+	font-weight: bold;
+	opacity: .8;
+}
+.gsuiMixerChannel-delete::before {
+	content: "\f00d";
+}
+
+/* .......................................................................... */
+.gsuiMixerChannel-nameWrap {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	overflow: hidden;
+	width: 100%;
+	border: 0;
+	color: inherit;
+	height: 34px;
+	min-height: 34px;
+	padding: 3px;
+	font-size: 12px;
+	font-family: var( --gsuiMixerChannel-name-font );
+	background-color: transparent;
+}
+.gsuiMixerChannel-name {
+	display: block;
+	overflow: hidden;
+	word-wrap: break-word;
+	text-align: center;
+	user-select: none;
+	-webkit-user-select: none;
+}
+.gsuiMixerChannel.gsuiMixer-selected .gsuiMixerChannel-name {
+	font-weight: bold;
+}
+.gsuiMixerChannel-muted .gsuiMixerChannel-name {
+	opacity: .5;
+}
+.gsuiMixer-panMain .gsuiMixerChannel-name {
+	font-style: italic;
+}
+
+/* .......................................................................... */
+.gsuiMixerChannel-analyserWrap {
+	position: relative;
+	flex: 10;
+	width: 100%;
+	max-height: 160px;
+}
+.gsuiMixer-selected .gsuiMixerChannel-analyserWrap {
+	box-shadow: 0 -2px var( --gsuiMixerChannel-gain-color );
+}
+.gsuiMixerChannel-analyser {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: .8;
+	background-color: #000;
+	filter: saturate( .5 ) contrast( .8 );
+}
+
+/* .......................................................................... */
+.gsuiMixerChannel-toggle {
+	display: flex;
+	width: 100%;
+	min-height: 18px;
+	border: 0;
+	cursor: pointer;
+	background-color: transparent;
+}
+.gsuiMixerChannel-toggle::before {
+	content: "";
+	margin: auto;
+	display: block;
+	border-radius: 50%;
+	width: 6px;
+	height: 6px;
+	background-color: var( --gsuiMixerChannel-toggle-bg );
+}
+
+/* .......................................................................... */
+.gsuiMixerChannel-pan {
+	height: 24px;
+	min-height: 24px;
+	z-index: 1;
+	overflow: hidden;
+	--gsuiSlider-lineColor: var( --gsuiMixerChannel-pan-color );
+}
+.gsuiMixerChannel-gain {
+	flex: 1;
+	width: 6px;
+	height: 48px;
+	margin-top: 6px;
+	min-height: 32px;
+	--gsuiSlider-lineColor: var( --gsuiMixerChannel-gain-color );
+}
+
+/* .......................................................................... */
+.gsuiMixerChannel-connect {
+	width: 100%;
+	border: 0;
+	z-index: 1;
+	padding: 0;
+	min-height: 18px;
+	color: rgba( 0, 0, 0, .3 );
+	cursor: pointer;
+	background-color: transparent;
+	transition: .2s color;
+}
+.gsuiMixerChannel-connect::before,
+.gsuiMixerChannel-connect::after {
+	position: relative;
+	font-size: 16px;
+	font-family: "FontAwesome";
+	color: var( --gsuiMixerChannel-connect-output-color );
+}
+.gsuiMixerChannel-connect::after {
+	color: var( --gsuiMixerChannel-connect-input-color );
+}
+.gsuiMixerChannel-connect.gsuiMixerChannel-leftup::before,
+.gsuiMixerChannel-connect.gsuiMixerChannel-rightup::after {
+	content: "\f0d8";
+}
+.gsuiMixerChannel-connect.gsuiMixerChannel-leftdown::before,
+.gsuiMixerChannel-connect.gsuiMixerChannel-rightdown::after {
+	content: "\f0d7";
+}
