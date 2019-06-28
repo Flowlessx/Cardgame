@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT =process.env.PORT || 8080;
+
 app.use(express.static('./daw'));
 
 app.use(express.json());
@@ -12,10 +13,10 @@ const courses = [
 
 process.env.PWD = process.cwd();
 
-app.use(express.static(process.env.PWD + '/daw'));
+app.use(express.static(process.env.PWD + '/public'));
 
 app.get('*', function (req, res) {
-  const index = path.join(process.env.PWD, '/daw/index.html');
+  const index = path.join(__dirname, '/public', 'index.html');
   res.sendFile(index);
 });
 
