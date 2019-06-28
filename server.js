@@ -9,10 +9,16 @@ const courses = [
   { id: 2, name: "Software Engineering" },
   { id: 3, name: "Human Computer Interaction" }
 ];
-app.get("/", function(req, res) {
-  //when we get an http get request to the root/homepage
- res.sendFile(path.join(__dirname, 'daw', 'index.html'));
+
+process.env.PWD = process.cwd();
+
+app.use(express.static(process.env.PWD + '/daw'));
+
+app.get('*', function (req, res) {
+  const index = path.join(process.env.PWD, '/daw/index.html');
+  res.sendFile(index);
 });
+
 //when we route to /courses
 app.get("/courses", function(req, res) {
   res.send(courses); //respond with the array of courses
