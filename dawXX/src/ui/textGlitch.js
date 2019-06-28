@@ -13,8 +13,8 @@ class TextGlitch {
 		Object.seal( this );
 
 		this.setTexts( [
-			"GridSound",
-			"gRIDsOUND",
+			"D.A.W",
+			"D.aa.M",
 			"&<:]$+\\#)",
 			"6/1)20*?}",
 			"9-!>5θ^И]",

@@ -13,7 +13,7 @@ function UIcookieInit() {
 function UIcookieClick() {
 	gsuiPopup.confirm(
 		"Cookie law",
-		"Do you accept to let the GridSound's DAW<br/>"
+		"Do you accept to let the D.A.W's DAW<br/>"
 		+ "using Cookies to offers you two features&nbsp;:<ul>"
 		+ "<li>Saving compositions locally (localStorage)</li>"
 		+ "<li>Offline mode (serviceWorker)</li>"

@@ -4,13 +4,13 @@ declare -a HEADER=(
 	'<!DOCTYPE html>'
 	'<html lang="en">'
 	'<head>'
-	'<title>GridSound</title>'
+	'<title>D.A.W</title>'
 	'<meta charset="UTF-8"/>'
 	'<meta name="viewport" content="width=device-width, user-scalable=no"/>'
 	'<meta name="description" content="A free and Open-Source DAW (digital audio workstation)"/>'
 	'<meta name="google" content="notranslate"/>'
 	'<meta property="og:type" content="website"/>'
-	'<meta property="og:title" content="GridSound"/>'
+	'<meta property="og:title" content="D.A.W"/>'
 	'<meta property="og:url" content="https://gridsound.com/daw/"/>'
 	'<meta property="og:image" content="https://gridsound.com/assets/og-image.jpg"/>'
 	'<meta property="og:image:width" content="800"/>'
@@ -24,7 +24,7 @@ declare -a HEADER=(
 declare -a HEADEREND=(
 	'</head>'
 	'<body>'
-	'<noscript>GridSound needs JavaScript to run</noscript>'
+	'<noscript>D.A.W needs JavaScript to run</noscript>'
 )
 
 declare -a CSSfiles=(
