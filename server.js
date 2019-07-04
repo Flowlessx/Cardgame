@@ -12,6 +12,10 @@ const courses = [
   { id: 3, name: "Human Computer Interaction" }
 ];
 
+
+
+
+
 app.get('*', function (request, response){
     response.sendFile(path.resolve( 'dawXX', 'index.html'));
 });
@@ -66,6 +70,19 @@ app.put("/courses/:id", function(req, res) {
   //returns the updated object
   res.send(course);
 });
-app.listen(PORT, function() {
+const server = app.listen(PORT, function() {
   console.log(`Listening on Port ${PORT}`);
+});
+
+
+
+const io = require('socket.io')(server);
+
+// Set socket.io listeners.
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
 });
