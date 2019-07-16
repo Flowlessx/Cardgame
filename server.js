@@ -5,13 +5,6 @@ const path = require('path');
 
 app.use(express.static('./dawXX'));
 
-app.use(express.json());
-const courses = [
-  { id: 1, name: "Algorithms" },
-  { id: 2, name: "Software Engineering" },
-  { id: 3, name: "Human Computer Interaction" }
-];
-
 app.get('*', function (request, response){
     response.sendFile(path.resolve( 'dawXX', 'index.html'));
 });
